@@ -13,7 +13,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import bases.DriverFactory;
 
-public class Login_Logout {
+public class Cadastro_Usuario {
 
 	String url;
 	WebDriver driver;
@@ -28,27 +28,22 @@ public class Login_Logout {
 	}
 
 	@Test
-	public void login() throws InterruptedException {
+	public void cadastro_usuario() throws InterruptedException {
 		driver.get(url);
-		Thread.sleep(1000);
-		driver.findElement(By.id("login2")).click();
-		driver.findElement(By.id("loginusername")).sendKeys("pathisy");
-		driver.findElement(By.id("loginpassword")).sendKeys("teste123");
-		driver.findElement(By.xpath("//*[@onclick = 'logIn()']")).click();
+		driver.findElement(By.id("signin2")).click();
+		driver.findElement(By.id("sign-username")).sendKeys("pathisy1");
+		driver.findElement(By.id("sign-password")).sendKeys("teste123");
+		driver.findElement(By.xpath("//*[@onclick = 'register()']")).click();
 
 	}
 
 	@Test
-	public void logout() throws InterruptedException {
+	public void cadastro_usuarioExistente() throws InterruptedException {
 		driver.get(url);
-		driver.findElement(By.id("login2")).click();
-		Thread.sleep(1000);
-		driver.findElement(By.id("loginusername")).sendKeys("pathisy");
-		driver.findElement(By.id("loginpassword")).sendKeys("teste123");
-		driver.findElement(By.xpath("//*[@onclick = 'logIn()']")).click();
-		Thread.sleep(1000);
-		driver.findElement(By.xpath("//*[@onclick = 'logOut()']")).click();
-
+		driver.findElement(By.id("signin2")).click();
+		driver.findElement(By.id("sign-username")).sendKeys("‘USUARIO_EXISTENTE’");
+		driver.findElement(By.id("sign-password")).sendKeys("SENHA_EXISTENTE");
+		driver.findElement(By.xpath("//*[@onclick = 'register()']")).click();
 	}
 
 	@After
@@ -60,5 +55,4 @@ public class Login_Logout {
 		driver.quit();
 
 	}
-
 }

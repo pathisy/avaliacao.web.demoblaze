@@ -13,7 +13,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import bases.DriverFactory;
 
-public class Login_Logout {
+public class Contato {
 
 	String url;
 	WebDriver driver;
@@ -28,26 +28,14 @@ public class Login_Logout {
 	}
 
 	@Test
-	public void login() throws InterruptedException {
+	public void contato() throws InterruptedException {
 		driver.get(url);
-		Thread.sleep(1000);
-		driver.findElement(By.id("login2")).click();
-		driver.findElement(By.id("loginusername")).sendKeys("pathisy");
-		driver.findElement(By.id("loginpassword")).sendKeys("teste123");
-		driver.findElement(By.xpath("//*[@onclick = 'logIn()']")).click();
-
-	}
-
-	@Test
-	public void logout() throws InterruptedException {
-		driver.get(url);
-		driver.findElement(By.id("login2")).click();
-		Thread.sleep(1000);
-		driver.findElement(By.id("loginusername")).sendKeys("pathisy");
-		driver.findElement(By.id("loginpassword")).sendKeys("teste123");
-		driver.findElement(By.xpath("//*[@onclick = 'logIn()']")).click();
-		Thread.sleep(1000);
-		driver.findElement(By.xpath("//*[@onclick = 'logOut()']")).click();
+		driver.findElement(By.linkText("Contact")).click();
+		driver.findElement(By.id("recipient-email")).sendKeys("pathisy.teste@hotmail.com");
+		driver.findElement(By.id("recipient-name")).sendKeys("pathisy");
+		driver.findElement(By.id("message-text")).sendKeys("Esta\r\n"
+				+ "é uma mensagem automatizada.");
+		driver.findElement(By.xpath("//*[@onclick = 'send()']")).click();
 
 	}
 
@@ -60,5 +48,4 @@ public class Login_Logout {
 		driver.quit();
 
 	}
-
 }
